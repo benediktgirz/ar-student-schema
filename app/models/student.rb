@@ -1,7 +1,9 @@
-require_relative '../../db/config'
+    require_relative '../../db/config'
 
 class Student < ActiveRecord::Base
 # implement your Student model here
+
+  has_one :teacher
 
   validates :email, :format => { :with => /\w+[@]\w+[.]\w{2,}/, :message => "You should know your email address."}
   validates :email, :uniqueness => true
@@ -17,7 +19,8 @@ class Student < ActiveRecord::Base
 
   def age
     now = Date.today
-    age = now.year - self.birthday.year - ((now.month > self.birthday.month || (now.month == self.birthday.month && now.day >= self.birthday.day)) ? 0 : 1)
+    bday = Date.parse(self.birthday)
+    age = now.year - bday.year - ((now.month > bday.month || (now.month == bday.month && now.day >= bday.day)) ? 0 : 1)
   end
 
 
