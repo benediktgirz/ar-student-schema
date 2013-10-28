@@ -5,8 +5,8 @@ class Student < ActiveRecord::Base
 
   has_one :teacher
 
-  validates :email, :format => { :with => /\w+[@]\w+[.]\w{2,}/, :message => "You should know your email address."}
-  validates :email, :uniqueness => true
+  # validates :email, :format => { :with => /\w+[@]\w+[.]\w{2,}/, :message => "You should know your email address."}
+  # validates :email, :uniqueness => true
   validates :age, :numericality => { :greater_than_or_equal_to => 5}
   validates :phone, :format => { :with => /.*\d{3}.*\d{3}.*\d{4}.*/, :message => "Invalid Phone Number"}
 
